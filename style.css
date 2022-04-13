@@ -5,8 +5,27 @@
 }
 
 body {
-  height: 95vh;
+  height: 100vh;
   background-color: aliceblue;
+}
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #3498db;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+  z-index: 1;
+  visibility: visible;
+  position: absolute;
+  left: 40%;
+  top: 40%;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .main__wrapper {
@@ -14,6 +33,9 @@ body {
   place-items: center;
   place-content: center;
   height: 100%;
+  position: absolute;
+  z-index: 2;
+  visibility: hidden;
 }
 
 .carousel__container {

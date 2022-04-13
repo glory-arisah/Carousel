@@ -58,3 +58,14 @@ window.addEventListener('keydown', (e) => {
 function addToLocalStorage() {
   localStorage.setItem('id', index)
 }
+
+// LOADER
+window.addEventListener('load', () => {
+  if (document.all) {
+    document.all['loader'].style.visibility = 'hidden'
+    document.all['main'].style.visibility = 'visible'
+  } else {
+    document.getElementById("loader").style.visibility = 'hidden';
+    document.getElementById("main").style.visibility = 'visible';
+  }
+})
