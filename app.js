@@ -1,34 +1,42 @@
 const prevBtn = document.querySelector('.prev')
 const nextBtn = document.querySelector('.next')
 const imageContainer = document.querySelector('.carousel__container')
+const dotContainer = document.querySelector('.dot__wrapper')
 const images = document.querySelectorAll('.carousel__container img')
-const dots = document.querySelectorAll('.dot')
 
-// global index for image amd dots positions
-let index = localStorage.getItem('id') ? localStorage.getItem('id') : 0
+// global index for image and dots positions
+let slideIndex = localStorage.getItem('id') ? localStorage.getItem('id') : 0
 
+// creates navigation dots
+images.forEach(() => {
+  let dot = document.createElement('p')
+  dot.classList.add('dot')
+  dotContainer.appendChild(dot)
+})
+const dots = dotContainer.querySelectorAll('.dot')
 // function to change the X-pos of the images
-const setImageAndDot = (i) => {
+const setImageAndDot = index => {
   // remove 'data-active' attribute from all dots
   dots.forEach(dot => {
     dot.removeAttribute('data-active')
   })
-  // add transform styles to all images
+  // change X-pos of images and data-active attr for dot element
   images.forEach(img => {
-    img.style.transform = `translateX(${i * -100}%)`
-    dots[i].setAttribute('data-active', '')
+    img.style.transform = `translateX(${index * -100}%)`
+    dots[index].setAttribute('data-active', '')
   })
   addToLocalStorage()
 }
 
+// navigation buttons
 const prevBtnAction = () => {
-  index <= 0 ? index = images.length - 1 : index--
-  setImageAndDot(index)
+  slideIndex <= 0 ? slideIndex = images.length - 1 : slideIndex--
+  setImageAndDot(slideIndex)
 }
 
 const nextBtnAction = () => {
-  index >= images.length - 1 ? index = 0 : index++
-  setImageAndDot(index)
+  slideIndex >= images.length - 1 ? slideIndex = 0 : slideIndex++
+  setImageAndDot(slideIndex)
 }
 
 //  EVENT LISTENERS
@@ -37,13 +45,13 @@ nextBtn.addEventListener('click', nextBtnAction)
 
 dots.forEach((dot, i) => {
   dot.addEventListener('click', () => {
-    index = i
+    slideIndex = i
     setImageAndDot(i)
   })
 })
 
 window.addEventListener('DOMContentLoaded', () => {
-  setImageAndDot(index)
+  setImageAndDot(slideIndex)
 })
 window.addEventListener('keydown', (e) => {
   if (e.keyCode === 37) {
@@ -56,7 +64,7 @@ window.addEventListener('keydown', (e) => {
 
 // LOCALSTORAGE FUNCTIONALITY
 function addToLocalStorage() {
-  localStorage.setItem('id', index)
+  localStorage.setItem('id', slideIndex)
 }
 
 // LOADER

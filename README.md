@@ -9,5 +9,5 @@ This application showcases a carousel created with vanilla javascript
 
 ### Features
 
-- Ability to scroll through the carousel using left and right arrow keys
+- Ability to scroll through the carousel using left and right arrow keys on the keyboard
 - Ability to scroll using either the previous and next buttons or the dots at the bottom of the carousel
