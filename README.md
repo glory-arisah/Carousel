@@ -6,6 +6,7 @@ This application showcases a carousel created with vanilla javascript
 
 - Vanilla JavaScript
 - HTML & CSS
+- Media query
 
 ### Features
 
